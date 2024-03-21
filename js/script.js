@@ -1,3 +1,4 @@
+/* ARRAY DI OGGETTI */
 const images = [
     {
         image: 'img/01.webp',
@@ -21,3 +22,32 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
+/* SELEZIONA LA SECONDA COL */
+const secondaCol = document.getElementById('seconda-col');
+
+
+for (let i=0; i < images.length; i++){
+
+    /* CREA CARD NEL HTML */
+    const card = document.createElement('card');
+
+    /* AGGIUNGI LA CLASSE CARD */
+    card.classList.add('card');
+ 
+   /*  AGGIUNGI L'HTML */
+    card.innerHTML = `
+        <img src="${images[i].image}" alt="">
+         <div class="ms-card-title">
+            <h1>${images[i].title}</h1>
+            <h2>${images[i].text}</h2>
+        </div>
+    `;
+    
+    /* APPENDI CARD ALLA SECONDA COL */
+    secondaCol.append(card);
+
+};
+
+
+
