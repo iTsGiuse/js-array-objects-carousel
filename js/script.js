@@ -23,10 +23,53 @@ const images = [
     }
 ];
 
-/* SELEZIONA LA SECONDA COL */
+/* SELEZIONA LA PRIMA E LA SECONDA COL */
+const primaCol = document.getElementById('prima-col');
 const secondaCol = document.getElementById('seconda-col');
+let counter = 0;
 
+/* CREAZIONE BUTTON SU + EVENTO */
+const buttonSu = document.createElement('div');
+buttonSu.classList.add('btn', 'p-1', 'cerchio-su');
+buttonSu.innerHTML= `&#8593`;
 
+buttonSu.addEventListener('click', function() {
+  
+    if (counter > 0) {
+        counter--;
+        primaCol.innerHTML = `
+        <img src="${images[counter].image}" alt="foto">
+            <div class="ms-card-title">
+                <h5 class="text-end">${images[counter].title}</h5 >
+                <p >${images[counter].text}</p>
+            </div>
+        `; 
+      } 
+
+    
+});
+
+/* CREAZIONE BUTTON GIU + EVENTO */
+const buttonGiu = document.createElement('div');
+buttonGiu.classList.add('btn', 'p-1', 'cerchio-giu');
+buttonGiu.innerHTML= `&#8595`;
+
+buttonGiu.addEventListener('click', function() {
+
+    if (counter < images.length - 1) {
+        counter++;
+        primaCol.innerHTML = `
+        <img src="${images[counter].image}" alt="foto">
+            <div class="ms-card-title d-block">
+                <h5 class="text-end">${images[counter].title}</h5 >
+                <p >${images[counter].text}</p>
+            </div>
+        `; 
+      }
+
+});
+
+/* CICLO PER LA CREAZIONE CARD */
 for (let i=0; i < images.length; i++){
 
     /* CREA CARD NEL HTML */
@@ -37,7 +80,7 @@ for (let i=0; i < images.length; i++){
  
    /*  AGGIUNGI L'HTML */
     card.innerHTML = `
-        <img src="${images[i].image}" alt="">
+        <img src="${images[i].image}" alt="Image">
          <div class="ms-card-title">
             <h1>${images[i].title}</h1>
             <h2>${images[i].text}</h2>
@@ -46,6 +89,10 @@ for (let i=0; i < images.length; i++){
     
     /* APPENDI CARD ALLA SECONDA COL */
     secondaCol.append(card);
+
+    /* APPENDI BUTTON ALLE CARD */
+    card.append(buttonGiu);
+    card.append(buttonSu);
 
 };
 
